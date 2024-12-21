@@ -59,9 +59,10 @@ namespace UAS_RPL
                 {
                     DatabaseHelper.OpenConnection(conn);
                     string query = @"
-                        SELECT t.id, t.id_pengguna, t.id_film, f.nama AS film_title, t.jumlah_tiket, t.total_biaya, t.waktu_pemesanan, t.status
+                        SELECT t.id, p.nama AS pengguna_nama, f.nama AS film_title, t.jumlah_tiket, t.total_biaya, t.waktu_pemesanan, t.status
                         FROM transaksi t
-                        JOIN film f ON t.id_film = f.id";
+                        JOIN film f ON t.id_film = f.id
+                        JOIN pengguna p ON t.id_pengguna = p.id";
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
